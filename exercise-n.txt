@@ -1,0 +1,119 @@
+Exercise 1
+Connect to the MySQL instance within your Workspace using your Cloud9 username
+
+mysql-ctl start 
+mysql --user 
+-------------
+Exercise 2
+Create a database named decodemtl_test within MySQL
+Create a database named decodemtl_addressbook within MySQL
+
+create database decodemtl_test;
+create database decodemtl_addressbook;
+-------------
+Exercise 3
+Remove database named decodemtl_test from MySQL
+
+drop database decodemtl_test;
+-------------
+Exercise 4
+Return the list of databases within MySQL
+
+show databases;
+-------------
+Exercise 5
+Create table Account for database decodemtl_addressbook
+Create table AddressBook for database decodemtl_addressbook
+Create table Entry for database decodemtl_addressbook
+Create table Test for database decodemtl_addressbook
+
+create table Account ();
+create table AddressBook;
+create table Entry;
+create table Test;
+-------------
+Exercise 6
+Remove table Test for database decodemtl_addressbook
+
+drop table Test;
+-------------
+Exercise 7
+Return list of tables within database decodemtl_addressbook
+
+show tables;
+-------------
+Exercise 8
+Reflect the data model shown in schema/addressbook_denormalized.png within database decodemtl_addressbook
+Account.id is a primary auto-increment key
+AddressBook.id is a primary auto-increment key
+Entry.id is a primary auto-increment key
+Entry.type is an ENUM column permitting home, work and other
+Entry.subtype is an ENUM column permitting phone, address and email
+
+drop table Account;
+drop table AddressBook;
+drop table Entry;
+
+CREATE TABLE Account (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    password VARCHAR(40),
+    createOn DATETIME,
+    modifiedOn DATETIME
+);
+CREATE TABLE AddressBook (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    account_id INT,
+    name VARCHAR(255),
+    createdOn DATETIME,
+    modifiedOn DATETIME
+);
+CREATE TABLE Entry (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    address_book_id INT,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    birthday DATETIME,
+    type ENUM('home', 'work', 'other'),
+    subtype ENUM('phone', 'address', 'email'),
+    contentLineOne VARCHAR(255),
+    contentLineTwo VARCHAR(255),
+    contentLineThree VARCHAR(255),
+    contentLineFour VARCHAR(255),
+    contentLineFive VARCHAR(255)
+);
+-------------
+Exercise 9
+Create a data model representing a Barn with Chickens 🐣
+This model should provide answers to the following questions:
+How many rooster, hen and chicks existed in the Barn on a specific date
+How many chicks will come to age on a specific date
+
+CREATE TABLE Barn (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    chicken_type ENUM('rooster', 'hen', 'chick'),
+    birth_day DATETIME
+);
+
+INSERT INTO Barn (chicken_type, birth_day ) VALUES
+    ("hen", "01-16-2016"),
+    ("rooster", "01-02-2016"),
+    ("hen", "01-16-2016"),
+    ("hen", "03-16-2016"),
+    ("chick", "07-30-2016"),
+    ("chick", "07-01-2016"),
+    ("chick", "07-16-2016");
+
+
+-------------
+Exercise 10 (Workshop Challenge)
+Create a data model representing a Hotel with Floors and Rooms 🏨
+This model should provide answers to the following questions:
+The list of Rooms available for rent on a specific date
+The list of Rooms which can be occupied by at least 3 people on a specific date
+The amount of unrentable Rooms (janitor closets, public laundry room, gym, etc.)
+The amount of Rooms having a private Kitchen
+The average amount of windows per Floor
+The amount of Floors having Rooms with carpets
+
+
